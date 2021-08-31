@@ -1,0 +1,14 @@
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            pivot = (left + right) // 2
+            if nums[pivot] == target:
+                return pivot
+            if target < nums[pivot]:
+                right = pivot - 1
+            else:
+                left = pivot + 1
+        return left
+
+"""The key of binary search is to find the middle value 1) init left and right pointer 2) left should be smaller than right 3) calculate pivot and see if it is smaller, euqal or larger than target, return left, or pivot...also make sure the pivot moves forward or backward"""
