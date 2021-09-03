@@ -1,0 +1,15 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # middle node = A[A.length // 2]
+        listNode = [] # init empty listNode
+        while head: # starting from the head node
+            listNode.append(head) #append every node
+            head = head.next #node moving towards next
+        return listNode[len(listNode)//2] # return the middle node
+    
+"""Time complexity: go through every node, O(N), space complexity, no new items added O(1)"""
