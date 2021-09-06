@@ -1,0 +1,22 @@
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+
+# [3, 5] , [1, 2], [4, 8]
+# sort [1, 2] [3, 5] not merged
+# sort [3, 5] [4, 8] merged[-1][1], interval[1] go with the max
+        
+        # sort arrays 
+        intervals.sort(key = lambda x: x[0])
+        
+        # merge the arrays
+        merged = []
+        for interval in intervals: 
+            # senario one
+            # not merged or merged end is before interval start
+            if not merged or merged[-1][1] < interval[0]:
+                merged.append(interval)
+            # senario two
+            # merged 
+            else: 
+                merged[-1][1] = max(merged[-1][1], interval[1])
+        return merged
