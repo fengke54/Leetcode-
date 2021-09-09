@@ -1,0 +1,21 @@
+class Solution:
+    def isAlienSorted(self, words: List[str], order: str) -> bool:
+        # initiate a hashmap, each letter, ranking (key-value pair)
+        order_map = {}
+        for index, val in enumerate(order):
+            order_map[val] = index
+
+        # two for loop helps get to each letter in the word
+        for i in range(len(words) - 1): # range defines as range (start, end -1)
+            for j in range(len(words[i])):
+                if j >= len(words[i+1]): # if latter has longer length, two words not match 
+                    return False
+                if words[i][j] != words[i+1][j]:
+                    if order_map[words[i][j]] > order_map[words[i + 1][j]]: # wrong order
+                        return False
+                    
+                    break
+        return True 
+
+"""space: letter always 26, hashmap array 
+time: two list (word M + N letter) """
