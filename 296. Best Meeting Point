@@ -1,0 +1,26 @@
+class Solution:
+    def minTotalDistance(self, grid: List[List[int]]) -> int:
+        rows, cols = [], []
+        n, m = len(grid), len(grid[0])
+        points = []
+        for i in range(n): # define point 
+            for j in range(m):
+                if grid[i][j] == 1: # detect friends' house
+                    rows.append(i)
+                    cols.append(j)
+                    points.append((i, j))
+        rows.sort() # get median point 
+        rowMedian = rows[int(len(rows)/2)]
+        cols.sort()
+        colMedian = cols[int(len(cols)/2)]
+
+        # calculation of distance 
+        res = 0
+        for (i, j) in points:
+            res += abs(rowMedian-i) + abs(colMedian-j)
+        return res
+    
+"""mahattan distance calculation 
+abs(ax-bx) + abs(ay-by)
+= abs(ax - 1/2abs(ax+bx) - bx + 1/2abs(ax+bx)) median method to calculate Mahattan 
+"""
