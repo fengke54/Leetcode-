@@ -1,0 +1,11 @@
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        rowlength = len(matrix[0]) 
+        
+        for row in matrix:
+            if target > row[rowlength - 1]:  # if target is later, continue to move
+                continue 
+            if target in row: # target is within the row 
+                return True
+        return False
+      
